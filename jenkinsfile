@@ -1,34 +1,27 @@
-pipeline {
-    agent any  // This will run on any available agent. Modify if you want to specify a particular node or label.
-
-    stages {
-        stage('Build') {
-            steps {
-                script {
-                    // Ensure Maven is in the PATH
-                    bat 'mvn -v'  // Verify Maven installation
-                    bat 'mvn clean install'  // Run the Maven build
-                }
+pipeline{
+    
+    agent any 
+    
+    stages{
+        stage('build'){
+            steps{
+                echo "my code is getting build..."
             }
         }
-        stage('package') {
-            steps {
-                script {
-                    bat 'docker build . '
-                }
+        stage('testing'){
+             steps{
+                 echo "my code is getting test..."
+             }
+        }
+        stage('code anylaise'){
+            steps{
+                echo "my code is anyalise..."
             }
         }
-    }
-
-    post {
-        success {
-            echo 'Build succeeded!'
-        }
-        failure {
-            echo 'Build failed.'
-        }
-        always {
-            archiveArtifacts artifacts: '**/target/*.jar', allowEmptyArchive: true
+        stage('deploy'){
+            steps{
+                echo "deploy my code..."
+            }
         }
     }
 }
