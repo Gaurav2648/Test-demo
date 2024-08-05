@@ -5,7 +5,7 @@ pipeline{
     stages {
         stage('build') {
             steps {
-               scrpit {
+               script {
                    //Ensure Maven is in path
                    bat 'mvn -v' //verify maven installation
                    bat ' mvn clean install' //run the maven build
