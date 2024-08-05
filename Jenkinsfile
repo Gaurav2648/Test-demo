@@ -12,19 +12,11 @@ pipeline{
                }
             }
         }
-        stage('testing') {
-             steps {
-                 echo "my code is getting test..."
-             }
-        }
-        stage('code anylaise') {
+        stage('package') {
             steps {
-                echo "my code is anyalise..."
-            }
-        }
-        stage('deploy') {
-            steps {
-                echo "deploy my code..."
+                script {
+                      bat 'docker build .'   
+                
             }
         }
     }
